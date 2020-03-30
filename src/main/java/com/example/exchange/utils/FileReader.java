@@ -1,5 +1,6 @@
 package com.example.exchange.utils;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -14,4 +15,11 @@ public class FileReader {
         return Files.lines(Paths.get(pathName)).collect(Collectors.toList());
     }
 
+    public void write(String pathName, List<String> fileData) throws IOException {
+        FileWriter writer = new FileWriter(pathName);
+        for (String str : fileData) {
+            writer.write(str);
+        }
+        writer.close();
+    }
 }
