@@ -15,11 +15,7 @@ public class FileReader {
         return Files.lines(Paths.get(pathName)).collect(Collectors.toList());
     }
 
-    public void write(String pathName, List<String> fileData) throws IOException {
-        FileWriter writer = new FileWriter(pathName);
-        for (String str : fileData) {
-            writer.write(str);
-        }
-        writer.close();
+    public void write(String pathName, String result) throws IOException {
+        Files.write(Paths.get(pathName), result.getBytes());
     }
 }
