@@ -1,9 +1,9 @@
-package com.example.exchange.utils;
+package com.example.exchange.service;
 
 import com.example.exchange.model.Ask;
 import com.example.exchange.model.Bid;
 
-class ComparatorOffer {
+public class ComparatorOffer {
     Bid maxBid(Bid bestBid, Bid newBid) {
         Bid result;
         if (bestBid == null) {

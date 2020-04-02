@@ -1,6 +1,6 @@
 package com.example.exchange.model;
 
-public class Spread extends Request{
+public class Spread {
    private int price;
    private int count;
 

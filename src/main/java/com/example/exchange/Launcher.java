@@ -1,7 +1,7 @@
 package com.example.exchange;
 
+import com.example.exchange.service.ResultFormatter;
 import com.example.exchange.utils.FileReader;
-import com.example.exchange.utils.ResultFormatter;
 
 import java.io.IOException;
 import java.util.List;
