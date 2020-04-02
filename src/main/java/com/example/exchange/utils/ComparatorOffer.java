@@ -3,7 +3,7 @@ package com.example.exchange.utils;
 import com.example.exchange.model.Ask;
 import com.example.exchange.model.Bid;
 
-public class ComparatorOffer {
+class ComparatorOffer {
     Bid maxBid(Bid bestBid, Bid newBid) {
         Bid result;
         if (bestBid == null) {

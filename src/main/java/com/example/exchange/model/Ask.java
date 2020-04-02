@@ -2,7 +2,7 @@ package com.example.exchange.model;
 
 import java.util.Objects;
 
-public class Ask {
+public class Ask extends Request{
     private int price;
     private int count;
 

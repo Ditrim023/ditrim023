@@ -6,7 +6,9 @@ q,best_bid
 u,11,5,ask
 u,23,1,bid
 u,4,5,ask
-u,56,1,bid
+u,56,5,bid
+q,best_bid
+o,sell,3
 q,best_bid
 u,1,5,ask
 q,best_ask
