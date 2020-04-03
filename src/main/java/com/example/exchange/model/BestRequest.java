@@ -1,13 +1,13 @@
 package com.example.exchange.model;
 
-public class Spread {
+public class BestRequest {
    private int price;
    private int count;
 
-   public Spread() {
+   public BestRequest() {
    }
 
-   public Spread(int price, int count) {
+   public BestRequest(int price, int count) {
       this.price = price;
       this.count = count;
    }
@@ -26,5 +26,11 @@ public class Spread {
 
    public void setCount(int count) {
       this.count = count;
+   }
+
+   @Override
+   public String toString() {
+      return price +
+           "," + count;
    }
 }

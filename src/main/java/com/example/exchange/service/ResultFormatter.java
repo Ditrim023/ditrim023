@@ -10,7 +10,6 @@ public class ResultFormatter {
    private static final String FORMAT = "%s%n";
    private RequestReader requestReader = new RequestReader();
 
-
    public String construct(List<String> dataFromFile) {
       StringBuilder sb = new StringBuilder();
       for (String data : dataFromFile) {

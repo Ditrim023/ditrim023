@@ -1,26 +1,30 @@
 package com.example.exchange.service;
 
-import com.example.exchange.model.Ask;
-import com.example.exchange.model.Bid;
+import com.example.exchange.model.BestRequest;
+import com.example.exchange.model.RequestType;
+
+import java.util.Map;
 
 public class ComparatorOffer {
-    Bid maxBid(Bid bestBid, Bid newBid) {
-        Bid result;
-        if (bestBid == null) {
-            result = newBid;
-        } else {
-            result = bestBid.getPrice() > newBid.getPrice() ? bestBid : newBid;
-        }
-        return result;
-    }
+   BestRequest maxBid(BestRequest newBid, Map<RequestType, BestRequest> bestBidMap) {
+      BestRequest result;
+      if (bestBidMap.size() == 0) {
+         result = newBid;
+      } else {
+         BestRequest bestBid = bestBidMap.get(RequestType.BID);
+         result = bestBid.getPrice() > newBid.getPrice() ? bestBid : newBid;
+      }
+      return result;
+   }
 
-    Ask minAsk(Ask bestAsk, Ask newAsk) {
-        Ask result;
-        if (bestAsk == null) {
-            result = newAsk;
-        } else {
-            result = bestAsk.getPrice() > newAsk.getPrice() ? newAsk : bestAsk;
-        }
-        return result;
-    }
+   BestRequest minAsk(BestRequest newAsk, Map<RequestType, BestRequest> bestBidMap) {
+      BestRequest result;
+      if (bestBidMap.size() == 0) {
+         result = newAsk;
+      } else {
+         BestRequest bestAsk = bestBidMap.get(RequestType.ASK);
+         result = bestAsk.getPrice() < newAsk.getPrice() ? bestAsk : newAsk;
+      }
+      return result;
+   }
 }
