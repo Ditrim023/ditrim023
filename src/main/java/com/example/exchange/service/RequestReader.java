@@ -12,7 +12,6 @@ class RequestReader {
    private static final String BID = "bid";
    private static final String BEST_BID = "q,best_bid";
    private static final String BEST_ASK = "q,best_ask";
-   private static final String BUY = "buy";
    private static final String SELL = "sell";
    private ComparatorOffer comparatorOffer = new ComparatorOffer();
    private Map<RequestType, BestRequest> bestBidMap = new EnumMap<>(RequestType.class);
@@ -38,12 +37,16 @@ class RequestReader {
 
    String queryRequest(String lineFromFile) {
       String result;
-      if (lineFromFile.equals(BEST_BID)) {
-         result = bestBidMap.get(RequestType.BID).toString();
-      } else if (lineFromFile.equals(BEST_ASK)) {
-         result = bestAskMap.get(RequestType.ASK).toString();
-      } else {
-         result = queryRequestByCount(lineFromFile);
+      try {
+         if (lineFromFile.equals(BEST_BID)) {
+            result = bestBidMap.get(RequestType.BID).toString();
+         } else if (lineFromFile.equals(BEST_ASK)) {
+            result = bestAskMap.get(RequestType.ASK).toString();
+         } else {
+            result = queryRequestByCount(lineFromFile);
+         }
+      } catch (NullPointerException e) {
+         throw new RequestNotFoundException(lineFromFile);
       }
       return result;
    }
@@ -61,7 +64,7 @@ class RequestReader {
             result = "0";
          }
       } catch (NullPointerException e) {
-         throw new RequestNotFoundException();
+         throw new RequestNotFoundException(lineFromFile);
       }
       return result;
    }
@@ -74,12 +77,10 @@ class RequestReader {
          BestRequest bestRequest = bestBidMap.get(RequestType.BID);
          bestRequest.setCount(bestRequest.getCount() - count);
          bestBidMap.put(RequestType.BID, bestRequest);
-      } else if (index.equals(BUY)) {
+      } else {
          BestRequest bestRequest = bestAskMap.get(RequestType.ASK);
          bestRequest.setCount(bestRequest.getCount() - count);
          bestAskMap.put(RequestType.ASK, bestRequest);
-      } else {
-         throw new RequestNotFoundException();
       }
    }
 }
